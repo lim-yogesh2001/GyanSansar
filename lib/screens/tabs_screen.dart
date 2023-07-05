@@ -23,7 +23,7 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activeScreen = const HomeScreen();
+    Widget activeScreen = HomeScreen();
 
     if (_selectedIndex == 1) {
       activeScreen = const FollowingScreen();
@@ -42,7 +42,9 @@ class _TabScreenState extends State<TabScreen> {
                 child: const AppBarComponent(
               isLoggedIn: true,
             )),
-            activeScreen
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: activeScreen)
           ]),
         ),
       ),

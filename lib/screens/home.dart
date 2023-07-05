@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
-import '../components/post_header.dart';
+import '../components/post_card/post_card.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
+  final List postImage = [
+    'https://images.unsplash.com/photo-1513001900722-370f803f498d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+    'https://images.unsplash.com/photo-1603284569248-821525309698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=385&q=80',
+    'https://images.unsplash.com/photo-1603284569248-821525309698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=385&q=80',
+  ];
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: h * 0.5,
-      margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-      padding: const EdgeInsets.all(5.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.grey.shade100),
-      child: const Column(
-        children: [
-          PostHeader(),
-          Text('Body'),
-          Text('Footer'),
-        ],
-      ),
+    return ListView(
+      children: [
+        PostCard(postItems: postImage),
+        PostCard(postItems: postImage)
+      ],
     );
   }
 }
-
-

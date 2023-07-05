@@ -58,42 +58,34 @@ class _AppBarComponentState extends State<AppBarComponent> {
     return LayoutBuilder(builder: (ctx, constraint) {
       final width = constraint.maxWidth;
 
-      return Row(
-        children: [
-          Container(
-            width: width * .2,
-            margin: const EdgeInsets.all(5.0),
-            child: const Text(
-              "Gyansansar",
-              style: TextStyle(
+      return Padding(
+        padding: const EdgeInsets.only(top: 15.0, bottom: 10.0, left: 5.0),
+        child: Row(
+          children: [
+            SizedBox(
+              width: widget.isLoggedIn ? width * .84 : width * .7,
+              height: 45,
+              child: TextField(
+                style: const TextStyle(
                   fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.teal),
-            ),
-          ),
-          SizedBox(
-            width: widget.isLoggedIn ? width * .62 : width * .5,
-            height: 45,
-            child: TextField(
-              style: const TextStyle(
-                fontSize: 12.0,
+                ),
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 232, 229, 229),
+                    labelText: "Search",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide.none)),
               ),
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromARGB(255, 232, 229, 229),
-                  labelText: 'Search...',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide.none)),
             ),
-          ),
-          const SizedBox(
-            width: 5.0,
-          ),
-          Container(
-              width: widget.isLoggedIn ? width * .12 : width * .25,
-              child: optWidget)
-        ],
+            const SizedBox(
+              width: 5.0,
+            ),
+            Container(
+                width: widget.isLoggedIn ? width * .12 : width * .25,
+                child: optWidget)
+          ],
+        ),
       );
     });
   }
