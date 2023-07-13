@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:gyansansar/screens/post_image.dart';
 
 class StaggeredGridWidget2 extends StatelessWidget {
-  final List gridItems;
+  final List<Map> gridItems;
   const StaggeredGridWidget2({
     required this.gridItems,
     super.key,
@@ -14,8 +15,11 @@ class StaggeredGridWidget2 extends StatelessWidget {
         .map((value) => StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1.3,
-            child: Container(
-              child: Image.network(value, fit: BoxFit.cover),
+            child: InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostImageScreen(images: gridItems, clickedImageIndex: gridItems.indexOf(value))),),
+              child: Container(
+                child: Image.network(value["picture"], fit: BoxFit.cover),
+              ),
             )))
         .toList();
 

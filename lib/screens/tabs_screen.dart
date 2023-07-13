@@ -3,7 +3,6 @@ import './following.dart';
 import './home.dart';
 import './answer.dart';
 import './notifications.dart';
-import '../components/app_bar.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({Key? key}) : super(key: key);
@@ -34,14 +33,44 @@ class _TabScreenState extends State<TabScreen> {
     }
 
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: const [
+            ListTile(
+              title: Text("Course"),
+            ),
+             ListTile(
+              title: Text("Settings"),
+            )
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title:  SizedBox(
+              // width: widget.isLoggedIn ? width * .84 : width * .7,
+              height: 45,
+              child: TextField(
+                style: const TextStyle(
+                  fontSize: 12.0,
+                ),
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 232, 229, 229),
+                    labelText: "Search",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none)),
+              ),
+            ),
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-                child: const AppBarComponent(
-              isLoggedIn: true,
-            )),
+            // Container(
+            //   width: MediaQuery.of(context).size.width,
+            //     child: const AppBarComponent(
+            //   isLoggedIn: true,
+            // )),
             Container(
               height: MediaQuery.of(context).size.height,
               child: activeScreen)

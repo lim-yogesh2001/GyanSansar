@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/post_image.dart';
 import './post_header.dart';
 import 'package:gyansansar/components/staggered_widget_2.dart';
 import 'package:gyansansar/components/staggered_widget_3.dart';
 import './post_footer.dart';
 
 class PostCard extends StatelessWidget {
-  final List postItems;
+  final List<Map> postImages;
   const PostCard({
-    required this.postItems,
+    required this.postImages,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget renderCollage = Container(
-      width: MediaQuery.of(context).size.width,
-      height: 300,
-      child: Image.network(
-        'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-        fit: BoxFit.cover,
+    Widget renderCollage = InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PostImageScreen(images: postImages, clickedImageIndex: postImages.indexOf(postImages[0]),),
+        ),
+      ),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 300,
+        child: Image.network(
+          postImages[0]["picture"],
+          fit: BoxFit.cover,
+        ),
       ),
     );
 
-    if (postItems.length == 2) {
+    if (postImages.length == 2) {
       renderCollage = StaggeredGridWidget2(
-        gridItems: postItems,
+        gridItems: postImages,
       );
-    } else if (postItems.length >= 3) {
+    } else if (postImages.length >= 3) {
       renderCollage = StaggeredGridWidget3(
-        gridItems: postItems,
+        gridItems: postImages,
       );
     }
 
