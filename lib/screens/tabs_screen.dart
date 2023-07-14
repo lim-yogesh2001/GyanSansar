@@ -3,6 +3,7 @@ import './following.dart';
 import './home.dart';
 import './answer.dart';
 import './notifications.dart';
+import '../components/custom_drawer.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({Key? key}) : super(key: key);
@@ -33,35 +34,23 @@ class _TabScreenState extends State<TabScreen> {
     }
 
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            ListTile(
-              title: Text("Course"),
-            ),
-             ListTile(
-              title: Text("Settings"),
-            )
-          ],
-        ),
-      ),
+      drawer: CustomDrawer(),
       appBar: AppBar(
-        title:  SizedBox(
-              // width: widget.isLoggedIn ? width * .84 : width * .7,
-              height: 45,
-              child: TextField(
-                style: const TextStyle(
-                  fontSize: 12.0,
-                ),
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 232, 229, 229),
-                    labelText: "Search",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none)),
-              ),
+        title: SizedBox(
+          height: 45,
+          child: TextField(
+            style: const TextStyle(
+              fontSize: 12.0,
             ),
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color.fromARGB(255, 232, 229, 229),
+                labelText: "Search",
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none)),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -72,8 +61,7 @@ class _TabScreenState extends State<TabScreen> {
             //   isLoggedIn: true,
             // )),
             Container(
-              height: MediaQuery.of(context).size.height,
-              child: activeScreen)
+                height: MediaQuery.of(context).size.height, child: activeScreen)
           ]),
         ),
       ),

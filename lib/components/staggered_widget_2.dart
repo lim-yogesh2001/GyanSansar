@@ -11,7 +11,7 @@ class StaggeredGridWidget2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> renderGridTile = gridItems
+    List<Widget> renderGridTiles = gridItems
         .map((value) => StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1.3,
@@ -26,7 +26,7 @@ class StaggeredGridWidget2 extends StatelessWidget {
     return StaggeredGrid.count(
       crossAxisCount: 2,
       crossAxisSpacing: 3.0,
-      children: renderGridTile
+      children: renderGridTiles
     );
   }
 }
