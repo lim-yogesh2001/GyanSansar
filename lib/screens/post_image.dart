@@ -64,7 +64,7 @@ class _PostImageScreenState extends State<PostImageScreen> {
                   height: 70,
                   child: Image.network(
                     widget.images[i]['picture'],
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
               );

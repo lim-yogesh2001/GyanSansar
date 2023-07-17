@@ -17,6 +17,22 @@ class HomeScreen extends StatelessWidget {
           "picture":
               'https://images.unsplash.com/photo-1603284569248-821525309698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=385&q=80'
         }
+      ],
+      "comments": [
+        {
+          "id": 1,
+          "comment": "Really Good",
+          "username": "Skyler Grey",
+          "image":
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+        },
+        {
+          "id": 2,
+          "comment": "Really Good",
+          "username": "Tommy Nelson",
+          "image":
+              "https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+        }
       ]
     },
     {
@@ -42,34 +58,36 @@ class HomeScreen extends StatelessWidget {
         {
           "id": 4,
           "picture":
-              'https://scontent.fktm17-1.fna.fbcdn.net/v/t1.6435-9/62235733_493534181418902_5313395108073177088_n.jpg?_nc_cat=106&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=skhl5KWA8YAAX9l_7wR&_nc_ht=scontent.fktm17-1.fna&oh=00_AfDZwimjdxxQ5V6Wqf4KGTk_qA-AB3UocOSbx420XmAj-w&oe=64D789A3',
+              'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80',
         },
         {
           "id": 4,
           "picture":
-              'https://scontent.fktm17-1.fna.fbcdn.net/v/t39.30808-6/292911681_836368457333450_2642078592255151279_n.jpg?_nc_cat=106&cb=99be929b-3346023f&ccb=1-7&_nc_sid=19026a&_nc_ohc=Rv7L6AwoefQAX-DpYUQ&_nc_ht=scontent.fktm17-1.fna&oh=00_AfBX16EiAFxSefCyCCvriljF3YWQAnr7gfVr9xhMBk9SAg&oe=64B4321F',
-        },
-        {
-          "id": 4,
-          "picture":
-              'https://scontent.fktm17-1.fna.fbcdn.net/v/t39.30808-6/254319763_683565432613754_1930896494770091144_n.jpg?_nc_cat=106&cb=99be929b-3346023f&ccb=1-7&_nc_sid=19026a&_nc_ohc=LzkbPTXuRGQAX_gQqpV&_nc_ht=scontent.fktm17-1.fna&oh=00_AfBiYIRnxklHladwOm8-FzI_AIYkaUcrXvCkIhWqWl0XhQ&oe=64B45207',
+              'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=386&q=80',
         },
         {
           "id": 4,
           "picture":
               'https://images.unsplash.com/photo-1603284569248-821525309698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=385&q=80',
         },
+      ],
+      "comments": [
       ]
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
-        PostCard(postImages: postImage[0]["image"]),
-        PostCard(postImages: postImage[3]["image"]),
-        PostCard(postImages: postImage[2]["image"]),
+        PostCard(
+          postImages: postImage[0]["image"],
+          postComments: postImage[0]["comments"],
+        ),
+        PostCard(
+          postImages: postImage[3]["image"],
+          postComments: postImage[3]["comments"],
+        ),
       ],
     );
   }

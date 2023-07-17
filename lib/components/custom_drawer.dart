@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -19,7 +18,7 @@ class CustomDrawer extends StatelessWidget {
                     bottomRight: Radius.circular(25.0))),
             padding: const EdgeInsets.all(12.0),
             child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   child: CircleAvatar(
@@ -34,7 +33,7 @@ class CustomDrawer extends StatelessWidget {
                   '  Yogesh Limbu',
                   style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.black54,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -48,35 +47,45 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          ListTile(
-            onTap: () {},
-            title: const Text("Course"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Assignments"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Notes"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Asked Queries"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Favorites"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Settings"),
-          ),
-          ListTile(
-            onTap: (){},
-            title: const Text("Logout"),
-          )
+          _CustomDrawerTile(title: "Course", icon: Icons.book, function: (){}),
+          _CustomDrawerTile(title: "Assignments", icon: Icons.work, function: (){}),
+          _CustomDrawerTile(title: "Notes", icon: Icons.note_add_sharp, function: (){}),
+          _CustomDrawerTile(title: "Asked Queries", icon: Icons.question_answer, function: (){}),
+          _CustomDrawerTile(title: "Favorites", icon: Icons.favorite, function: (){}),
+          _CustomDrawerTile(title: "Settings", icon: Icons.settings, function: (){}),
+          _CustomDrawerTile(title: "Logout", icon: Icons.logout, function: (){})
+         
         ],
+      ),
+    );
+  }
+}
+
+class _CustomDrawerTile extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final VoidCallback function;
+
+  const _CustomDrawerTile({
+    required this.title,
+    required this.icon,
+    required this.function,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      autofocus: true,
+      leading: Icon(icon),
+      titleAlignment: ListTileTitleAlignment.center,
+      onTap: function,
+      title: Text(
+        title,
+        style: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 16.0,
+            color: Colors.black87),
       ),
     );
   }

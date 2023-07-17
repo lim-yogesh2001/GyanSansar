@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../custom_flat_button.dart';
 
 class PostFooter extends StatefulWidget {
   const PostFooter({
@@ -74,76 +75,34 @@ class _PostFooterState extends State<PostFooter> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 30,
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      overlayColor:
-                          MaterialStatePropertyAll(Colors.grey.shade300),
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      iconSize: MaterialStateProperty.all(16.0),
-                      iconColor: MaterialStateProperty.all(
-                          isLiked ? Colors.blue : Colors.black45),
-                      textStyle: MaterialStateProperty.all(
-                        const TextStyle(
-                          fontSize: 14.0,
-                        ),
-                      )),
-                  onPressed: () {
-                    setState(() {
-                      isLiked = !isLiked;
-                    });
-                  },
-                  icon: const Icon(Icons.thumb_up),
-                  label: Text(
-                    isLiked ? "Liked" : "Like",
-                    style: TextStyle(color: isLiked ? Colors.blue : Colors.black45),
-                  ),
-                ),
+              CustomFlatButton(
+                buttonTitle: isLiked ? "Liked" : "Like",
+                onPressed: () {
+                  setState(() {
+                    isLiked = !isLiked;
+                  });
+                },
+                color: isLiked ? Colors.blue : Colors.black45,
+                icon: Icons.thumb_up,
+                iconColor: isLiked ? Colors.blue : Colors.black45,
               ),
-              SizedBox(
-                height: 30,
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      overlayColor:
-                          MaterialStatePropertyAll(Colors.grey.shade300),
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      iconSize: MaterialStateProperty.all(16.0),
-                      iconColor: MaterialStateProperty.all(Colors.black45),
-                      textStyle: MaterialStateProperty.all(
-                        const TextStyle(fontSize: 14.0),
-                      )),
-                  onPressed: () {},
-                  icon: const Icon(Icons.comment),
-                  label: const Text(
-                    "Comment",
-                    style: TextStyle(color: Colors.black45),
-                  ),
-                ),
+              CustomFlatButton(
+                buttonTitle: "Comment",
+                onPressed: () {},
+                color: Colors.black45,
+                icon: Icons.comment,
+                iconColor: Colors.black45,
               ),
-              SizedBox(
-                height: 30,
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      overlayColor:
-                          MaterialStatePropertyAll(Colors.grey.shade300),
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      iconSize: MaterialStateProperty.all(16.0),
-                      iconColor: MaterialStateProperty.all(isFavorite ? Colors.pink : Colors.black45),
-                      textStyle: MaterialStateProperty.all(
-                        const TextStyle(fontSize: 14.0),
-                      )),
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
-                  icon: const Icon(Icons.favorite),
-                  label: Text(
-                    "Favorite",
-                    style: TextStyle(color: isFavorite ? Colors.pink : Colors.black45),
-                  ),
-                ),
+              CustomFlatButton(
+                buttonTitle: "Favorite",
+                onPressed: () {
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                },
+                color: isFavorite ? Colors.pink : Colors.black45,
+                icon: Icons.favorite,
+                iconColor: isFavorite ? Colors.pink : Colors.black45,
               ),
             ],
           ),

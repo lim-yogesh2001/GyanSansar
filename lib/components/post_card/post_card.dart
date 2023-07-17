@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/components/post_card/post_comment.dart';
 import 'package:gyansansar/screens/post_image.dart';
 import './post_header.dart';
 import 'package:gyansansar/components/staggered_widget_2.dart';
@@ -7,8 +8,10 @@ import './post_footer.dart';
 
 class PostCard extends StatelessWidget {
   final List<Map> postImages;
+  final List postComments;
   const PostCard({
     required this.postImages,
+    required this.postComments,
     super.key,
   });
 
@@ -56,7 +59,9 @@ class PostCard extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          PostFooter(),
+          const PostFooter(),
+          PostComment(comment: postComments
+          ,)
         ],
       ),
     );

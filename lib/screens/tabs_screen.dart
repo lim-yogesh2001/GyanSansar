@@ -34,7 +34,7 @@ class _TabScreenState extends State<TabScreen> {
     }
 
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
         title: SizedBox(
           height: 45,
@@ -53,33 +53,39 @@ class _TabScreenState extends State<TabScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(children: [
-            // Container(
-            //   width: MediaQuery.of(context).size.width,
-            //     child: const AppBarComponent(
-            //   isLoggedIn: true,
-            // )),
-            Container(
-                height: MediaQuery.of(context).size.height, child: activeScreen)
-          ]),
+        child: activeScreen,
+      ),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 1.0),
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromARGB(136, 202, 199, 199),
+                  spreadRadius: 2,
+                  blurRadius: 0.2)
+            ]),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+          child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              fixedColor: Colors.orange,
+              unselectedItemColor: Colors.grey.shade400,
+              backgroundColor: Colors.teal,
+              elevation: 0.0,
+              onTap: selectIndex,
+              currentIndex: _selectedIndex,
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.document_scanner), label: 'Following'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.check_box), label: 'Answer'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.notifications), label: 'Notifications'),
+              ]),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          fixedColor: Colors.grey.shade400,
-          backgroundColor: Colors.teal,
-          onTap: selectIndex,
-          currentIndex: _selectedIndex,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.document_scanner), label: 'Following'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.check_box), label: 'Answer'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications), label: 'Notifications'),
-          ]),
     );
   }
 }
