@@ -61,34 +61,42 @@ class PostComment extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Text(
-                        "Like",
-                        style: TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black54),
-                      ),
-                    ),
+                    _CommentBtn(btnName: "Like", onPressed: (){}),
                     const SizedBox(
-                      width: 10.0,
+                      width: 20.0,
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text(
-                        "Reply",
-                        style: TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black54),
-                      ),
-                    ),
+                    _CommentBtn(btnName: "Reply", onPressed: (){})
                   ],
                 ),
               )
             ])
           ],
         ));
+  }
+}
+
+class _CommentBtn extends StatelessWidget {
+  final String btnName;
+  final VoidCallback onPressed;
+
+  const _CommentBtn({
+    required this.btnName,
+    required this.onPressed,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      // hoverColor: Colors.amber,
+      onTap: onPressed,
+      child: Text(
+        btnName,
+        style: const TextStyle(
+            fontSize: 12.0,
+            fontWeight: FontWeight.w400,
+            color: Colors.black54),
+      ),
+    );
   }
 }

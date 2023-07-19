@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/assignments.dart';
 import './following.dart';
 import './home.dart';
-import './answer.dart';
-import './notifications.dart';
+import 'settings.dart';
 import '../components/custom_drawer.dart';
+import '../components/custom_notification.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({Key? key}) : super(key: key);
@@ -28,14 +29,18 @@ class _TabScreenState extends State<TabScreen> {
     if (_selectedIndex == 1) {
       activeScreen = const FollowingScreen();
     } else if (_selectedIndex == 2) {
-      activeScreen = const AnswerScreen();
+      activeScreen = const AssignmentScreen();
     } else if (_selectedIndex == 3) {
-      activeScreen = const NotificationScreen();
+      activeScreen = const SettingScreen();
     }
 
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: AppBar(
+        leading: const _DrawerIcon(),
+        actions: [
+          CustomNotificationButton(totalNotifications: 1,)
+        ],
         title: SizedBox(
           height: 45,
           child: TextField(
@@ -43,12 +48,14 @@ class _TabScreenState extends State<TabScreen> {
               fontSize: 12.0,
             ),
             decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color.fromARGB(255, 232, 229, 229),
-                labelText: "Search",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide.none)),
+              filled: true,
+              fillColor: const Color.fromARGB(255, 232, 229, 229),
+              labelText: "Search",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                borderSide: BorderSide.none,
+              ),
+            ),
           ),
         ),
       ),
@@ -61,9 +68,10 @@ class _TabScreenState extends State<TabScreen> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
             boxShadow: [
               BoxShadow(
-                  color: Color.fromARGB(136, 202, 199, 199),
-                  spreadRadius: 2,
-                  blurRadius: 0.2)
+                color: Color.fromARGB(136, 202, 199, 199),
+                spreadRadius: 2,
+                blurRadius: 0.2,
+              )
             ]),
         child: ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
@@ -80,10 +88,37 @@ class _TabScreenState extends State<TabScreen> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.document_scanner), label: 'Following'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.check_box), label: 'Answer'),
+                    icon: Icon(Icons.work), label: 'Assignments'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications), label: 'Notifications'),
+                    icon: Icon(Icons.settings), label: 'Settings'),
               ]),
+        ),
+      ),
+    );
+  }
+}
+
+class _DrawerIcon extends StatelessWidget {
+  const _DrawerIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) => GestureDetector(
+        onTap: () {
+          Scaffold.of(context).openDrawer();
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100.0),
+          child: Container(
+            margin: const EdgeInsets.all(2.0),
+            child: Image.asset(
+              'assets/gyansansar_logo.png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return Portal(
       child: MaterialApp(
         title: 'Gyansansar',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // This is the theme of your application.
           //

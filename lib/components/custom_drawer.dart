@@ -47,14 +47,21 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          _CustomDrawerTile(title: "Course", icon: Icons.book, function: (){}),
-          _CustomDrawerTile(title: "Assignments", icon: Icons.work, function: (){}),
-          _CustomDrawerTile(title: "Notes", icon: Icons.note_add_sharp, function: (){}),
-          _CustomDrawerTile(title: "Asked Queries", icon: Icons.question_answer, function: (){}),
-          _CustomDrawerTile(title: "Favorites", icon: Icons.favorite, function: (){}),
-          _CustomDrawerTile(title: "Settings", icon: Icons.settings, function: (){}),
-          _CustomDrawerTile(title: "Logout", icon: Icons.logout, function: (){})
-         
+          _CustomDrawerTile(title: "Course", icon: Icons.book, function: () {}),
+          _CustomDrawerTile(
+              title: "Answer", icon: Icons.question_answer, function: () {}),
+          _CustomDrawerTile(
+              title: "Notes", icon: Icons.note_add_sharp, function: () {}),
+          _CustomDrawerTile(
+              title: "Asked Queries",
+              icon: Icons.question_answer,
+              function: () {}),
+          _CustomDrawerTile(
+              title: "Favorites", icon: Icons.favorite, function: () {}),
+          _CustomDrawerTile(
+              title: "Notifications", icon: Icons.notifications, function: () {}),
+          _CustomDrawerTile(
+              title: "Logout", icon: Icons.logout, function: () {})
         ],
       ),
     );
