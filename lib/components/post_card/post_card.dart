@@ -59,8 +59,8 @@ class PostCard extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          const PostFooter(),
-          PostComment(comment: postComments
+          PostFooter(comments: postComments,),
+          PostComment(comments: postComments
           ,)
         ],
       ),

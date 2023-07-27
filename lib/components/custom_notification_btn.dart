@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/notification.dart';
 
 class CustomNotificationButton extends StatefulWidget {
   final int totalNotifications;
@@ -9,7 +10,8 @@ class CustomNotificationButton extends StatefulWidget {
   });
 
   @override
-  State<CustomNotificationButton> createState() => _CustomNotificationButtonState();
+  State<CustomNotificationButton> createState() =>
+      _CustomNotificationButtonState();
 }
 
 class _CustomNotificationButtonState extends State<CustomNotificationButton> {
@@ -18,7 +20,14 @@ class _CustomNotificationButtonState extends State<CustomNotificationButton> {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NotificationScreen(),
+              ),
+            );
+          },
           iconSize: 30.0,
           icon: const Icon(Icons.notifications),
         ),
@@ -31,11 +40,10 @@ class _CustomNotificationButtonState extends State<CustomNotificationButton> {
               padding: const EdgeInsets.all(2.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(20.0)),
+                  color: Colors.red, borderRadius: BorderRadius.circular(20.0)),
               child: Text(
                 widget.totalNotifications.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12.0,
                   color: Colors.white,
                 ),

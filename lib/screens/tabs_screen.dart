@@ -4,7 +4,7 @@ import './following.dart';
 import './home.dart';
 import 'settings.dart';
 import '../components/custom_drawer.dart';
-import '../components/custom_notification.dart';
+import '../components/custom_notification_btn.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({Key? key}) : super(key: key);
@@ -38,8 +38,8 @@ class _TabScreenState extends State<TabScreen> {
       drawer: const CustomDrawer(),
       appBar: AppBar(
         leading: const _DrawerIcon(),
-        actions: [
-          CustomNotificationButton(totalNotifications: 1,)
+        actions: const [
+          CustomNotificationButton(totalNotifications: 3,)
         ],
         title: SizedBox(
           height: 45,
