@@ -11,7 +11,7 @@ class PostHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 70.0,
+          height: 50.0,
           child: CircleAvatar(
             radius: 20.0,
             backgroundImage: NetworkImage(

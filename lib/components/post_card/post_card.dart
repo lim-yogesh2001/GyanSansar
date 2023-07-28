@@ -4,14 +4,17 @@ import 'package:gyansansar/screens/post_image.dart';
 import './post_header.dart';
 import 'package:gyansansar/components/staggered_widget_2.dart';
 import 'package:gyansansar/components/staggered_widget_3.dart';
+import './post_description.dart';
 import './post_footer.dart';
 
 class PostCard extends StatelessWidget {
   final List<Map> postImages;
   final List postComments;
+  final String description;
   const PostCard({
     required this.postImages,
     required this.postComments,
+    required this.description,
     super.key,
   });
 
@@ -53,8 +56,10 @@ class PostCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           color: Colors.grey.shade100),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const PostHeader(),
+          PostDescription(description: description),
           renderCollage,
           const SizedBox(
             height: 20.0,
