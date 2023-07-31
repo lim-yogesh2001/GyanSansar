@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/profile.dart';
 import '../components/settings_list_tile.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -9,23 +10,20 @@ class SettingScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
-          child: Text(
-            "Settings",
-            style: TextStyle(
-                color: Colors.black87,
-                fontSize: 24.0,
-                fontWeight: FontWeight.w400),
-          ),
-        ),
         _settingsTitle("Profile"),
         Container(
-          margin: const EdgeInsets.fromLTRB(15.0, 0, 0, 10.0),
-          child: const Column(
+          padding: const EdgeInsets.fromLTRB(5.0, 0, 5.0, 10.0),
+          child: Column(
             children: [
               ListTile(
-                title: Text(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
+                },
+                title: const Text(
                   "profile",
                   style: TextStyle(
                     color: Colors.teal,
@@ -33,7 +31,7 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              ListTile(
+              const ListTile(
                 title: Text(
                   "Change Password",
                   style: TextStyle(
@@ -42,7 +40,7 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              ListTile(
+              const ListTile(
                 title: Text(
                   "Change Email",
                   style: TextStyle(
@@ -90,13 +88,11 @@ class SettingScreen extends StatelessWidget {
               ),
               CustomSettingListTile(
                 title: "Contact Info",
-                subTitle:
-                    "Show your phone number for visitors.",
+                subTitle: "Show your phone number for visitors.",
               ),
               CustomSettingListTile(
                 title: "Email Info",
-                subTitle:
-                    "Show your email address to visitors.",
+                subTitle: "Show your email address to visitors.",
               )
             ],
           ),
