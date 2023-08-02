@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/settings_profile_view.dart';
+import '../screens/settings_profile_gallery.dart';
 
 class ProfileTabsAndViews extends StatefulWidget {
   const ProfileTabsAndViews({
@@ -56,10 +57,10 @@ class _ProfileTabsAndViewsState extends State<ProfileTabsAndViews>
             child: TabBarView(
               controller: _tabController,
               children: [
-                Text("Profile Screen"),
+                SettingsProfileView(),
                 Text("Question Screen"),
                 Text("Favorites Screen"),
-                Text("Gallery Screen")
+                SettingsProfileGallery()
               ],
             ),
           )
