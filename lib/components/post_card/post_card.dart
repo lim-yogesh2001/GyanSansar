@@ -8,7 +8,7 @@ import './post_description.dart';
 import './post_footer.dart';
 
 class PostCard extends StatelessWidget {
-  final List<Map> postImages;
+  final List postImages;
   final List postComments;
   final String description;
   const PostCard({
@@ -20,22 +20,27 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget renderCollage = InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PostImageScreen(images: postImages, clickedImageIndex: postImages.indexOf(postImages[0]),),
-        ),
-      ),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 300,
-        child: Image.network(
-          postImages[0]["picture"],
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+    Widget renderCollage = postImages.isEmpty
+        ? const SizedBox.shrink()
+        : InkWell(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PostImageScreen(
+                  images: postImages,
+                  clickedImageIndex: postImages.indexOf(postImages[0]),
+                ),
+              ),
+            ),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 300,
+              child: Image.network(
+                postImages[0]["picture"],
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
 
     if (postImages.length == 2) {
       renderCollage = StaggeredGridWidget2(
@@ -64,9 +69,8 @@ class PostCard extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          PostFooter(comments: postComments,),
-          PostComment(comments: postComments
-          ,)
+          PostFooter(comments: postComments),
+          PostComment(comments: postComments)
         ],
       ),
     );

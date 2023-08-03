@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PostImageScreen extends StatefulWidget {
-  final List<Map> images;
+  final List images;
   final int clickedImageIndex;
   const PostImageScreen({required this.images, required this.clickedImageIndex, super.key});
 

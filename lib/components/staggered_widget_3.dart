@@ -4,7 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../screens/post_image.dart';
 
 class StaggeredGridWidget3 extends StatelessWidget {
-  final List<Map> gridItems;
+  final List gridItems;
   const StaggeredGridWidget3({
     required this.gridItems,
     super.key,

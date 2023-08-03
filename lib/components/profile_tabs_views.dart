@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../screens/settings_profile_view.dart';
 import '../screens/settings_profile_gallery.dart';
+import '../screens/settings_profile_question.dart';
+import '../screens/settings_profile_favorites.dart';
 
 class ProfileTabsAndViews extends StatefulWidget {
   const ProfileTabsAndViews({
@@ -58,8 +60,8 @@ class _ProfileTabsAndViewsState extends State<ProfileTabsAndViews>
               controller: _tabController,
               children: [
                 SettingsProfileView(),
-                Text("Question Screen"),
-                Text("Favorites Screen"),
+                SettingsProfileQuestions(),
+                SettingsProfileFavorite(),
                 SettingsProfileGallery()
               ],
             ),
