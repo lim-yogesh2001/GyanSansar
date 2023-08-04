@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/screens/profile.dart';
 import '../components/settings_list_tile.dart';
+import './change_email.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -31,8 +32,9 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
-                title: Text(
+              ListTile(
+                onTap: () {},
+                title: const Text(
                   "Change Password",
                   style: TextStyle(
                     color: Colors.teal,
@@ -40,8 +42,13 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const ListTile(
-                title: Text(
+              ListTile(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangeEmailScreen(),
+                  ));
+                },
+                title: const Text(
                   "Change Email",
                   style: TextStyle(
                     color: Colors.teal,

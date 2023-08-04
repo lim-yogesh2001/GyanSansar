@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class SettingsProfileGallery extends StatelessWidget {
   const SettingsProfileGallery({super.key});
@@ -20,11 +21,11 @@ class SettingsProfileGallery extends StatelessWidget {
         ),
         itemBuilder: (ctx, i) {
           return Container(
-            child: Image.network(
-              images[i],
-              fit: BoxFit.cover,
-            ),
-          );
+              child: FadeInImage(
+            placeholder: MemoryImage(kTransparentImage),
+            image: NetworkImage(images[i]),
+            fit: BoxFit.cover,
+          ));
         });
   }
 }
