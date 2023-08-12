@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/course_list.dart';
+import 'package:gyansansar/screens/notes_list.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -47,19 +49,32 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          _CustomDrawerTile(title: "Course", icon: Icons.book, function: () {}),
+          _CustomDrawerTile(
+            title: "Course",
+            icon: Icons.book,
+            function: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (ctx) => const CourseListScreen(),
+              ),
+            ),
+          ),
           _CustomDrawerTile(
               title: "Answer", icon: Icons.question_answer, function: () {}),
           _CustomDrawerTile(
-              title: "Notes", icon: Icons.note_add_sharp, function: () {}),
+              title: "Notes",
+              icon: Icons.note_add_sharp,
+              function: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const NotesListScreen(),
+                ));
+              }),
           _CustomDrawerTile(
               title: "Asked Queries",
               icon: Icons.question_answer,
               function: () {}),
           _CustomDrawerTile(
               title: "Favorites", icon: Icons.favorite, function: () {}),
-          _CustomDrawerTile(
-              title: "Notifications", icon: Icons.notifications, function: () {}),
           _CustomDrawerTile(
               title: "Logout", icon: Icons.logout, function: () {})
         ],

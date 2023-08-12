@@ -58,8 +58,8 @@ class _PostImageScreenState extends State<PostImageScreen> {
                 onTap: () => changeImageIndex(i),
                 child: Container(
                   color: selectedIndex == i ? Colors.orange : Colors.white,
-                  margin: const EdgeInsets.all(1.0),
-                  padding: const EdgeInsets.all(3.0),
+                  margin: const EdgeInsets.all(0.5),
+                  padding: const EdgeInsets.all(1.0),
                   width: 60,
                   height: 70,
                   child: Image.network(

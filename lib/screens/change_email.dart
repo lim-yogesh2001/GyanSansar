@@ -69,6 +69,12 @@ class _ChangeEmailForm extends StatefulWidget {
 class _ChangeEmailFormState extends State<_ChangeEmailForm> {
   final _formKey = GlobalKey<FormState>();
 
+  void _submitForm() {
+    if(_formKey.currentState!.validate()){
+      print("Pressed");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -85,6 +91,15 @@ class _ChangeEmailFormState extends State<_ChangeEmailForm> {
                   border: InputBorder.none,
                   labelText: "Old Email Address",
                 ),
+                validator: (value){
+                  if (value!.isEmpty){
+                    return "Do not Leave The TextField Empty.";
+                  }
+                  if (!value.endsWith("@gmail.com")){
+                    return "Please Enter Correct form of email.";
+                  }
+                  return null;
+                },
               ),
             ),
             Container(
@@ -95,7 +110,7 @@ class _ChangeEmailFormState extends State<_ChangeEmailForm> {
               child: ElevatedButton(
                 style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.teal)),
-                onPressed: () {},
+                onPressed: _submitForm,
                 child: const Text(
                   "Submit",
                   style: TextStyle(color: Colors.white),

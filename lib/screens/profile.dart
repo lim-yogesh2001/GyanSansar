@@ -64,7 +64,13 @@ class ProfileScreen extends StatelessWidget {
                         }
                         return CircleAvatar(
                           backgroundColor: Colors.grey.shade300,
-                          child: Text('+ ${following.length - 3}'),
+                          child: Text(
+                            '+ ${following.length - 3}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0,
+                            ),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -114,8 +120,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class _ProfileHeader extends StatelessWidget {
   const _ProfileHeader({
