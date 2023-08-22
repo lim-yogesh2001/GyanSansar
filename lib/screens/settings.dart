@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gyansansar/screens/profile.dart';
 import '../components/settings_list_tile.dart';
 import './change_email.dart';
+import './change_password.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -20,7 +21,7 @@ class SettingScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const ProfileScreen(),
+                      builder: (ctx) => const ProfileScreen(),
                     ),
                   );
                 },
@@ -33,7 +34,12 @@ class SettingScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (ctx) => const ChangePasswordScreen()),
+                  );
+                },
                 title: const Text(
                   "Change Password",
                   style: TextStyle(
@@ -45,7 +51,7 @@ class SettingScreen extends StatelessWidget {
               ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ChangeEmailScreen(),
+                    builder: (ctx) => const ChangeEmailScreen(),
                   ));
                 },
                 title: const Text(
