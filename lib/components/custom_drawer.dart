@@ -50,21 +50,20 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           _CustomDrawerTile(
-            title: "Course",
-            icon: Icons.book,
-            function: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (ctx) => const CourseListScreen(),
-              ),
-            ),
-          ),
+              title: "Course",
+              icon: Icons.book,
+              function: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => const CourseListScreen()));
+              }),
           _CustomDrawerTile(
               title: "Answer", icon: Icons.question_answer, function: () {}),
           _CustomDrawerTile(
               title: "Notes",
               icon: Icons.note_add_sharp,
               function: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const NotesListScreen(),
                 ));
