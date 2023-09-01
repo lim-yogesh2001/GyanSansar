@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/answer.dart';
 import 'package:gyansansar/screens/assignments.dart';
 import './following.dart';
 import './home.dart';
@@ -29,8 +30,10 @@ class _TabScreenState extends State<TabScreen> {
     if (_selectedIndex == 1) {
       activeScreen = const FollowingScreen();
     } else if (_selectedIndex == 2) {
-      activeScreen = const AssignmentScreen();
+      activeScreen = const AnswerScreen();
     } else if (_selectedIndex == 3) {
+      activeScreen = const AssignmentScreen();
+    } else if (_selectedIndex == 4) {
       activeScreen = const SettingScreen();
     }
 
@@ -87,6 +90,8 @@ class _TabScreenState extends State<TabScreen> {
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.document_scanner), label: 'Following'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.question_answer_rounded), label: 'Answer'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.work), label: 'Assignments'),
                 BottomNavigationBarItem(

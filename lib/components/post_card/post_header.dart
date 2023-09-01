@@ -87,7 +87,7 @@ class PostHeader extends StatelessWidget {
           child: Row(
             children: [
               PopupMenuButton(
-                surfaceTintColor: Colors.white,
+                  surfaceTintColor: Colors.white,
                   iconSize: 18.0,
                   itemBuilder: (ctx) {
                     return [

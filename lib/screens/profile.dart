@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import '../components/profile_tabs_views.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final String initialTab;
+  const ProfileScreen({ required this.initialTab, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.grey.shade500,
                     thickness: 0.5,
                   ),
-                  const ProfileTabsAndViews()
+                  ProfileTabsAndViews(initialTab: initialTab,)
                 ],
               ),
             )
@@ -135,11 +137,12 @@ class _ProfileHeader extends StatelessWidget {
         height: 220,
         child: Stack(clipBehavior: Clip.none, children: [
           SizedBox.expand(
-            child: Image.network(
-              "https://images.unsplash.com/photo-1552699611-e2c208d5d9cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=508&q=80",
-              fit: BoxFit.cover,
-            ),
-          ),
+              child: FadeInImage(
+            placeholder: MemoryImage(kTransparentImage),
+            image: const NetworkImage(
+                "https://images.unsplash.com/photo-1552699611-e2c208d5d9cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=508&q=80"),
+            fit: BoxFit.cover,
+          )),
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: const Icon(Icons.arrow_back),
@@ -151,13 +154,14 @@ class _ProfileHeader extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(100.0),
               child: SizedBox(
-                height: 120.0,
-                width: 120.0,
-                child: Image.network(
-                  'https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80',
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  height: 120.0,
+                  width: 120.0,
+                  child: FadeInImage(
+                    placeholder: MemoryImage(kTransparentImage),
+                    image: const NetworkImage(
+                        'https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80'),
+                    fit: BoxFit.cover,
+                  )),
             ),
           )
         ]),

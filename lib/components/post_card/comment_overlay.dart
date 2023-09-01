@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/comment_screen.dart';
 import '../custom_flat_button.dart';
 import '../comment.dart';
 
 class CommentOverlay extends StatelessWidget {
   final List comments;
+  final void Function(bool) closeOverlay;
   const CommentOverlay({
     required this.comments,
+    required this.closeOverlay,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> renderedComments = comments.map((e) {
-      // int i = comments.indexOf(e);
-      return Comment(
-        imageUrl: e['image'],
-        username: e['username'],
-        description: e['comment'],
-        created: "1hr",
-      );
-    }).toList();
+    // List<Widget> renderedComments = comments.map((e) {
+    //   // int i = comments.indexOf(e);
+    //   return Comment(
+    //     imageUrl: e['image'],
+    //     username: e['username'],
+    //     description: e['comment'],
+    //     created: "1hr",
+    //   );
+    // }).toList();
 
     return Container(
         height: 350.0,
@@ -43,18 +46,29 @@ class CommentOverlay extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                height: 500,
-                width: double.infinity,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ...renderedComments,
-                    ],
-                  ),
-                ),
+                height: 550,
+                child: ListView.builder(
+                    itemCount: comments.length,
+                    itemBuilder: (context, i) {
+                      return Comment(
+                        imageUrl: comments[i]['image'],
+                        username: comments[i]['username'],
+                        description: comments[i]['comment'],
+                        created: "1hr",
+                      );
+                    }),
               ),
             ),
-            CustomFlatButton(buttonTitle: "Comment", onPressed: (){}, color: Colors.black87, icon: Icons.comment, iconColor: Colors.black87)
+            CustomFlatButton(
+                buttonTitle: "Comment",
+                onPressed: () {
+                  closeOverlay(false);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => const CommentScreen()));
+                },
+                color: Colors.black87,
+                icon: Icons.comment,
+                iconColor: Colors.black87)
           ],
         ));
   }

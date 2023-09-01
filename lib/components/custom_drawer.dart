@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/screens/course_list.dart';
 import 'package:gyansansar/screens/notes_list.dart';
+import 'package:gyansansar/screens/profile.dart';
+import 'package:gyansansar/screens/question_bank_screen.dart';
+import 'package:gyansansar/screens/syllabus_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -58,7 +61,24 @@ class CustomDrawer extends StatelessWidget {
                     builder: (ctx) => const CourseListScreen()));
               }),
           _CustomDrawerTile(
-              title: "Answer", icon: Icons.question_answer, function: () {}),
+              title: "Syllabus",
+              icon: Icons.schedule,
+              function: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) => const SyllabusScreen(),
+                  ),
+                );
+              }),
+          _CustomDrawerTile(
+              title: "Question Bank",
+              icon: Icons.question_answer,
+              function: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => const QuestionBankScreen()));
+              }),
           _CustomDrawerTile(
               title: "Notes",
               icon: Icons.note_add_sharp,
@@ -71,9 +91,21 @@ class CustomDrawer extends StatelessWidget {
           _CustomDrawerTile(
               title: "Asked Queries",
               icon: Icons.question_answer,
-              function: () {}),
+              function: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) =>
+                        const ProfileScreen(initialTab: 'question')));
+              }),
           _CustomDrawerTile(
-              title: "Favorites", icon: Icons.favorite, function: () {}),
+              title: "Favorites",
+              icon: Icons.favorite,
+              function: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) =>
+                        const ProfileScreen(initialTab: 'favorites'))); 
+              }),
           _CustomDrawerTile(
               title: "Logout", icon: Icons.logout, function: () {})
         ],

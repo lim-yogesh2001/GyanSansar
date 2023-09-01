@@ -19,6 +19,12 @@ class _PostFooterState extends State<PostFooter> {
   bool isFavorite = false;
   bool isVisible = false;
 
+  void closeOverlay(bool value) {
+    setState(() {
+      isVisible = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -98,7 +104,7 @@ class _PostFooterState extends State<PostFooter> {
                           });
                         }
                       },
-                      child: CommentOverlay(comments: widget.comments,),
+                      child: CommentOverlay(comments: widget.comments, closeOverlay: closeOverlay,),
                     ),
                   ),
                 ),

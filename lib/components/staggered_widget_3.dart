@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../screens/post_image.dart';
 
@@ -42,11 +43,11 @@ class StaggeredGridWidget3 extends StatelessWidget {
               ),
             ),
             child: Container(
-              child: Image.network(
-                gridItems[0]['picture'],
-                fit: BoxFit.cover,
-              ),
-            ),
+                child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(gridItems[0]['picture']),
+              fit: BoxFit.cover,
+            )),
           ),
         ),
         StaggeredGridTile.count(
@@ -57,16 +58,15 @@ class StaggeredGridWidget3 extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => PostImageScreen(
                     images: gridItems,
-                    clickedImageIndex:
-                        gridItems.indexOf(gridItems[1])),
+                    clickedImageIndex: gridItems.indexOf(gridItems[1])),
               ),
             ),
             child: Container(
-              child: Image.network(
-                gridItems[1]['picture'],
-                fit: BoxFit.cover,
-              ),
-            ),
+                child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(gridItems[1]['picture']),
+              fit: BoxFit.cover,
+            )),
           ),
         ),
         StaggeredGridTile.count(
@@ -76,8 +76,9 @@ class StaggeredGridWidget3 extends StatelessWidget {
             Container(
               width: 1000,
               height: 1000,
-              child: Image.network(
-                gridItems[2]['picture'],
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(gridItems[2]['picture']),
                 fit: BoxFit.cover,
               ),
             ),

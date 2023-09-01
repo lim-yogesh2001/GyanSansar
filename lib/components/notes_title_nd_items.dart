@@ -21,15 +21,15 @@ class NotesTitleAndItems extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600),
                 ),
-                ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.amber)),
-                  onPressed: () {},
-                  child: Text(
-                    "Add",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )
+                // ElevatedButton(
+                //   style: const ButtonStyle(
+                //       backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                //   onPressed: () {},
+                //   child: const Text(
+                //     "Add",
+                //     style: TextStyle(color: Colors.black),
+                //   ),
+                // )
               ],
             ),
           ),

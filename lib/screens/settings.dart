@@ -14,14 +14,15 @@ class SettingScreen extends StatelessWidget {
       children: [
         _settingsTitle("Profile"),
         Container(
-          padding: const EdgeInsets.fromLTRB(5.0, 0, 5.0, 10.0),
           child: Column(
             children: [
               ListTile(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (ctx) => const ProfileScreen(),
+                      builder: (ctx) => const ProfileScreen(
+                        initialTab: 'profile',
+                      ),
                     ),
                   );
                 },
@@ -67,7 +68,6 @@ class SettingScreen extends StatelessWidget {
         ),
         _settingsTitle("Email Notifications"),
         Container(
-          margin: const EdgeInsets.fromLTRB(15.0, 0, 0, 10.0),
           child: const Column(
             children: [
               CustomSettingListTile(
@@ -91,7 +91,6 @@ class SettingScreen extends StatelessWidget {
         ),
         _settingsTitle("Privacy"),
         Container(
-          margin: const EdgeInsets.fromLTRB(15.0, 0, 0, 10.0),
           child: const Column(
             children: [
               CustomSettingListTile(
