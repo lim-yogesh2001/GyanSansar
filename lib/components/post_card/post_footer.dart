@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import '../custom_flat_button.dart';
 import './comment_overlay.dart';
+import '../../models/comment.dart';
 
 class PostFooter extends StatefulWidget {
-  final List comments;
+  final List<Comment> comments;
+  final String likeStatus;
   const PostFooter({
     required this.comments,
+    required this.likeStatus,
     super.key,
   });
 
@@ -34,32 +37,34 @@ class _PostFooterState extends State<PostFooter> {
           children: [
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: const Row(children: [
-                  Icon(
+                child: Row(children: [
+                  const Icon(
                     Icons.thumb_up,
                     color: Colors.blue,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10.0,
                   ),
-                  Text("01",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                      ))
+                  Text(
+                    widget.likeStatus,
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                    ),
+                  )
                 ])),
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: const Row(children: [
+                child: Row(children: [
                   Text(
-                    "1",
-                    style: TextStyle(
+                    widget.comments.length.toString(),
+                    style: const TextStyle(
                       fontSize: 12.0,
                     ),
                   ),
-                  SizedBox(
-                    width: 10.0,
+                  const SizedBox(
+                    width: 5.0,
                   ),
-                  Text("Comment",
+                  const Text("Comment",
                       style: TextStyle(
                         fontSize: 12.0,
                       ))
@@ -104,7 +109,11 @@ class _PostFooterState extends State<PostFooter> {
                           });
                         }
                       },
-                      child: CommentOverlay(comments: widget.comments, closeOverlay: closeOverlay,),
+                      child: CommentOverlay(
+                        comments: widget.comments,
+                        likeStatus: widget.likeStatus,
+                        closeOverlay: closeOverlay,
+                      ),
                     ),
                   ),
                 ),

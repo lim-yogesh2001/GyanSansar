@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/screens/profile.dart';
-import '../components/settings_list_tile.dart';
+import '../widget/settings_list_tile.dart';
 import './change_email.dart';
 import './change_password.dart';
 

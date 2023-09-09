@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../comment.dart';
+import '../../models/comment.dart';
 
 class PostComment extends StatelessWidget {
-  final List comments;
+  final List<Comment> comments;
   const PostComment({
     required this.comments,
     super.key,
@@ -12,11 +13,11 @@ class PostComment extends StatelessWidget {
   Widget build(BuildContext context) {
     return comments.isEmpty
         ? const SizedBox.shrink()
-        : Comment(
-            imageUrl: comments[0]['image'],
-            username: comments[0]['username'],
-            description: comments[0]['comment'],
-            created: "1hr",
+        : CommentComponent(
+            imageUrl: comments[0].user.info?.profile,
+            username: comments[0].user.givenName,
+            description: comments[0].description,
+            created: comments[0].createdAt,
           );
   }
 }

@@ -62,9 +62,7 @@ class _TabScreenState extends State<TabScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: activeScreen,
-      ),
+      body: activeScreen,
       bottomNavigationBar: Container(
         margin: const EdgeInsets.symmetric(horizontal: 1.0),
         decoration: const BoxDecoration(

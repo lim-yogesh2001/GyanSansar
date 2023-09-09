@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/components/post_card/post_comment.dart';
+import 'package:gyansansar/models/meta.dart';
 import 'package:gyansansar/screens/post_image.dart';
 import './post_header.dart';
 import 'package:gyansansar/components/staggered_widget_2.dart';
 import 'package:gyansansar/components/staggered_widget_3.dart';
 import './post_description.dart';
 import './post_footer.dart';
+import '../../models/comment.dart';
 
 class PostCard extends StatelessWidget {
-  final List postImages;
-  final List postComments;
+  final List<Meta> postImages;
+  final List<Comment> postComments;
   final String description;
+  final String likeStatus;
   const PostCard({
     required this.postImages,
     required this.postComments,
     required this.description,
+    required this.likeStatus,
     super.key,
   });
 
@@ -36,7 +40,7 @@ class PostCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 300,
               child: Image.network(
-                postImages[0]["picture"],
+                postImages[0].attachment,
                 fit: BoxFit.cover,
               ),
             ),
@@ -69,7 +73,7 @@ class PostCard extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
-          PostFooter(comments: postComments),
+          PostFooter(comments: postComments, likeStatus: likeStatus,),
           PostComment(comments: postComments)
         ],
       ),

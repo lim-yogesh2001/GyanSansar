@@ -39,11 +39,11 @@ class FollowingScreen extends StatelessWidget {
 
     return Column(
       children: [
-        PostCard(
-          postImages: favoriteList[0]["image"],
-          postComments: favoriteList[0]["comments"],
-          description: favoriteList[0]["description"],
-        ),
+        // PostCard(
+        //   postImages: favoriteList[0]["image"],
+        //   postComments: favoriteList[0]["comments"],
+        //   description: favoriteList[0]["description"],
+        // ),
       ],
     );
   }

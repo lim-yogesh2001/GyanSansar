@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../components/assignment_indicator.dart';
-import '../components/assignment_datatable.dart';
+import '../widget/assignment_indicator.dart';
+import '../const/assignment_datatable.dart';
 
 class AssignmentScreen extends StatelessWidget {
   const AssignmentScreen({super.key});

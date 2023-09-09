@@ -33,16 +33,16 @@ class SettingsProfileQuestions extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          PostCard(
-            postImages: questions[0]['image'],
-            postComments: questions[0]['comments'],
-            description: questions[0]['description'],
-          ),
-          PostCard(
-            postImages: questions[0]['image'],
-            postComments: questions[0]['comments'],
-            description: questions[0]['description'],
-          )
+          // PostCard(
+          //   postImages: questions[0]['image'],
+          //   postComments: questions[0]['comments'],
+          //   description: questions[0]['description'],
+          // ),
+          // PostCard(
+          //   postImages: questions[0]['image'],
+          //   postComments: questions[0]['comments'],
+          //   description: questions[0]['description'],
+          // )
         ],
       ),
     );

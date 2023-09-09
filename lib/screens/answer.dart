@@ -39,11 +39,12 @@ class AnswerScreen extends StatelessWidget {
 
     return Column(
       children: [
-        PostCard(
-          postImages: answerList[0]["image"],
-          postComments: answerList[0]["comments"],
-          description: answerList[0]["description"],
-        ),
+        // PostCard(
+        //   postImages: answerList[0]["image"],
+        //   postComments: answerList[0]["comments"],
+        //   description: answerList[0]["description"],
+        //   likeStatus: answerList,
+        // ),
       ],
     );
   }

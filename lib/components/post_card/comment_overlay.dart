@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/screens/comment_screen.dart';
+import '../../models/comment.dart';
 import '../custom_flat_button.dart';
 import '../comment.dart';
 
 class CommentOverlay extends StatelessWidget {
-  final List comments;
+  final List<Comment> comments;
+  final String likeStatus;
   final void Function(bool) closeOverlay;
   const CommentOverlay({
     required this.comments,
+    required this.likeStatus,
     required this.closeOverlay,
     super.key,
   });
@@ -39,7 +42,7 @@ class CommentOverlay extends StatelessWidget {
             ]),
         child: Column(
           children: [
-            const _StatusCounter(),
+            _StatusCounter(likeStatus: likeStatus,),
             Divider(
               color: Colors.grey.shade300,
               height: 20.0,
@@ -50,11 +53,11 @@ class CommentOverlay extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: comments.length,
                     itemBuilder: (context, i) {
-                      return Comment(
-                        imageUrl: comments[i]['image'],
-                        username: comments[i]['username'],
-                        description: comments[i]['comment'],
-                        created: "1hr",
+                      return CommentComponent(
+                        imageUrl: comments[i].user.info?.profile,
+                        username: comments[i].user.givenName,
+                        description: comments[i].description,
+                        created: comments[i].createdAt,
                       );
                     }),
               ),
@@ -75,34 +78,36 @@ class CommentOverlay extends StatelessWidget {
 }
 
 class _StatusCounter extends StatelessWidget {
+  final String likeStatus;
   const _StatusCounter({
+    required this.likeStatus,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Row(
+      child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.thumb_up,
             color: Colors.blue,
             size: 16.0,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
           Text(
-            "10",
-            style: TextStyle(
+            likeStatus,
+            style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
                 color: Colors.black87),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios_rounded,
             size: 14.0,
           )

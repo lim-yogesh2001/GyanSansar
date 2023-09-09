@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:gyansansar/models/meta.dart';
 import 'package:gyansansar/screens/post_image.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class StaggeredGridWidget2 extends StatelessWidget {
-  final List gridItems;
+  final List<Meta> gridItems;
   const StaggeredGridWidget2({
     required this.gridItems,
     super.key,
@@ -26,7 +27,7 @@ class StaggeredGridWidget2 extends StatelessWidget {
               child: Container(
                   child: FadeInImage(
                 placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(value["picture"]),
+                image: NetworkImage(value.attachment),
                 fit: BoxFit.cover,
               )),
             )))

@@ -34,11 +34,11 @@ class SettingsProfileFavorite extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          PostCard(
-            postImages: favorites[0]['image'],
-            postComments: favorites[0]['comments'],
-            description: favorites[0]['description'],
-          )
+          // PostCard(
+          //   postImages: favorites[0]['image'],
+          //   postComments: favorites[0]['comments'],
+          //   description: favorites[0]['description'],
+          // )
         ],
       ),
     );

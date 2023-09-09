@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../const/assignment_data.dart';
+import 'assignment_data.dart';
 
 class AssignmentDatatable extends StatefulWidget {
   const AssignmentDatatable({super.key});

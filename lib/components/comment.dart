@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class Comment extends StatelessWidget {
-  final String imageUrl;
+class CommentComponent extends StatelessWidget {
+  final String? imageUrl;
   final String username;
   final String description;
-  final String created;
+  final DateTime created;
 
-  const Comment({
+  const CommentComponent({
     super.key,
     required this.imageUrl,
     required this.username,
@@ -27,7 +28,7 @@ class Comment extends StatelessWidget {
             CircleAvatar(
               backgroundColor: Colors.white,
               radius: 18.0,
-              backgroundImage: NetworkImage(imageUrl),
+              backgroundImage:NetworkImage(imageUrl ?? "https://images.unsplash.com/photo-1582053628662-c65b0e0544e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
             ),
             const SizedBox(
               width: 10.0,
@@ -49,14 +50,18 @@ class Comment extends StatelessWidget {
                           fontSize: 14.0,
                           fontWeight: FontWeight.w400),
                     ),
-                    Text(
-                      description,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.normal,
-                        overflow: TextOverflow.ellipsis,
-                        height: 2.0,
+                    Container(
+                      width: 270,
+                      child: Text(
+                        description,
+                        softWrap: true,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.normal,
+                          // overflow: TextOverflow.ellipsis,
+                          // height: 2.0,
+                        ),
                       ),
                     ),
                   ],
@@ -71,7 +76,7 @@ class Comment extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 0.0, right: 10.0),
                       child: Text(
-                        created,
+                        DateFormat.yMMMEd().format(created),
                         style: const TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/models/random_post.dart';
 import '../components/post_card/post_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../provider/random_post.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   HomeScreen({super.key});
 
   final List postImage = [
@@ -33,8 +36,9 @@ class HomeScreen extends StatelessWidget {
           "image":
               "https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
         }
-      ], 
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      ],
+      "description":
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     },
     {
       "image": [
@@ -72,27 +76,62 @@ class HomeScreen extends StatelessWidget {
               'https://images.unsplash.com/photo-1603284569248-821525309698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=385&q=80',
         },
       ],
-      "comments": [
-      ],
-      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      "comments": [],
+      "description":
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     },
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        PostCard(
-          postImages: postImage[0]["image"],
-          postComments: postImage[0]["comments"],
-          description: postImage[0]["description"],
-        ),
-        PostCard(
-          postImages: postImage[3]["image"],
-          postComments: postImage[3]["comments"],
-          description: postImage[3]["description"],
-        ),
-      ],
+  Widget build(BuildContext context, ref) {
+    final data = ref.watch(randomPostFutureProvider);
+
+    return data.when(
+      data: (data) {
+        List<RandomPost> randomPostList = data.map((e) => e).toList();
+        return Column(
+          children: [
+            Expanded(
+                child: ListView.builder(
+                    itemCount: randomPostList.length,
+                    itemBuilder: (context, i) {
+                      return PostCard(
+                          postImages: randomPostList[i].meta,
+                          postComments: randomPostList[i].comment,
+                          description: randomPostList[i].description,
+                          likeStatus: randomPostList[i].likedStatus);
+                    }))
+          ],
+          // children: randomPostList
+          //     .map((e) => PostCard(
+          //           postImages: e.meta,
+          //           postComments: e.comment,
+          //           description: e.description,
+          //           likeStatus: e.likedStatus,
+          //         ))
+          //     .toList(),
+        );
+      },
+      error: (er, _) {
+        print(er);
+        return Text(er.toString());
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
+
+    // return Column(
+    //   children: [
+    //     PostCard(
+    //       postImages: postImage[0]["image"],
+    //       postComments: postImage[0]["comments"],
+    //       description: postImage[0]["description"],
+    //     ),
+    //     PostCard(
+    //       postImages: postImage[3]["image"],
+    //       postComments: postImage[3]["comments"],
+    //       description: postImage[3]["description"],
+    //     ),
+    //   ],
+    // );
   }
 }

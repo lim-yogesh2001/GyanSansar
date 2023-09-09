@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/models/meta.dart';
 
 class PostImageScreen extends StatefulWidget {
-  final List images;
+  final List<Meta> images;
   final int clickedImageIndex;
   const PostImageScreen({required this.images, required this.clickedImageIndex, super.key});
 
@@ -31,8 +32,8 @@ class _PostImageScreenState extends State<PostImageScreen> {
       height: MediaQuery.of(context).size.height * .5,
       width: MediaQuery.of(context).size.width,
       child: Image.network(
-        widget.images[selectedIndex!]['picture'],
-        fit: BoxFit.cover,
+        widget.images[selectedIndex!].attachment,
+        fit: BoxFit.contain,
       ),
     );
 
@@ -59,12 +60,12 @@ class _PostImageScreenState extends State<PostImageScreen> {
                 child: Container(
                   color: selectedIndex == i ? Colors.orange : Colors.white,
                   margin: const EdgeInsets.all(0.5),
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.all(3.0),
                   width: 60,
                   height: 70,
                   child: Image.network(
-                    widget.images[i]['picture'],
-                    fit: BoxFit.contain,
+                    widget.images[i].attachment,
+                    fit: BoxFit.cover,
                   ),
                 ),
               );
