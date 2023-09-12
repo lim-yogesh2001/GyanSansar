@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gyansansar/components/post_card/post_comment.dart';
+import 'package:gyansansar/models/faculty.dart';
 import 'package:gyansansar/models/meta.dart';
+import 'package:gyansansar/models/subject.dart';
+import 'package:gyansansar/models/user.dart';
 import 'package:gyansansar/screens/post_image.dart';
 import './post_header.dart';
 import 'package:gyansansar/components/staggered_widget_2.dart';
@@ -12,11 +15,17 @@ import '../../models/comment.dart';
 class PostCard extends StatelessWidget {
   final List<Meta> postImages;
   final List<Comment> postComments;
+  final User user;
+  final Subject subject;
+  final Faculty faculty;
   final String description;
   final String likeStatus;
   const PostCard({
     required this.postImages,
     required this.postComments,
+    required this.user,
+    required this.subject,
+    required this.faculty,
     required this.description,
     required this.likeStatus,
     super.key,
@@ -67,13 +76,16 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PostHeader(),
+          PostHeader(user: user, subject: subject, faculty: faculty),
           PostDescription(description: description),
           renderCollage,
           const SizedBox(
             height: 20.0,
           ),
-          PostFooter(comments: postComments, likeStatus: likeStatus,),
+          PostFooter(
+            comments: postComments,
+            likeStatus: likeStatus,
+          ),
           PostComment(comments: postComments)
         ],
       ),

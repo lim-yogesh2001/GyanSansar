@@ -44,6 +44,7 @@ class _TabScreenState extends State<TabScreen> {
         actions: const [
           CustomNotificationButton(totalNotifications: 3,)
         ],
+        elevation: 0,
         title: SizedBox(
           height: 45,
           child: TextField(

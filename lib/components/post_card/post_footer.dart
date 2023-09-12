@@ -18,14 +18,29 @@ class PostFooter extends StatefulWidget {
 }
 
 class _PostFooterState extends State<PostFooter> {
+  OverlayEntry? overlayEntry;
   bool isLiked = false;
   bool isFavorite = false;
   bool isVisible = false;
 
   void closeOverlay(bool value) {
-    setState(() {
-      isVisible = value;
+    overlayEntry!.remove();
+    overlayEntry = null;
+  }
+
+  void showOverlay() {
+    overlayEntry = OverlayEntry(builder: (BuildContext context) {
+      return Align(
+        widthFactor: 0.0,
+        heightFactor: 10.0,
+        child: CommentOverlay(
+          comments: widget.comments,
+          likeStatus: widget.likeStatus,
+          closeOverlay: closeOverlay,
+        ),
+      );
     });
+    Overlay.of(context).insert(overlayEntry!);
   }
 
   @override
@@ -92,42 +107,17 @@ class _PostFooterState extends State<PostFooter> {
                 icon: Icons.thumb_up,
                 iconColor: isLiked ? Colors.blue : Colors.black45,
               ),
-              PortalTarget(
-                visible: isVisible,
-                anchor: const Filled(),
-                portalFollower: Material(
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: IntrinsicWidth(
-                    stepHeight: 400.0,
-                    stepWidth: 200.0,
-                    child: GestureDetector(
-                      onVerticalDragUpdate: (details) {
-                        if (details.delta.dy > 10) {
-                          setState(() {
-                            isVisible = false;
-                          });
-                        }
-                      },
-                      child: CommentOverlay(
-                        comments: widget.comments,
-                        likeStatus: widget.likeStatus,
-                        closeOverlay: closeOverlay,
-                      ),
-                    ),
-                  ),
-                ),
-                child: CustomFlatButton(
-                  buttonTitle: "Comment",
-                  onPressed: () {
-                    setState(() {
-                      isVisible = true;
-                    });
-                  },
-                  color: Colors.black45,
-                  icon: Icons.comment,
-                  iconColor: Colors.black45,
-                ),
+              CustomFlatButton(
+                buttonTitle: "Comment",
+                onPressed: () {
+                  setState(() {
+                    isVisible = true;
+                  });
+                  showOverlay();
+                },
+                color: Colors.black45,
+                icon: Icons.comment,
+                iconColor: Colors.black45,
               ),
               CustomFlatButton(
                 buttonTitle: "Favorite",

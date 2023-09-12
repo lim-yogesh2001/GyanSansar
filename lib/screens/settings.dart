@@ -9,107 +9,109 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _settingsTitle("Profile"),
-        Container(
-          child: Column(
-            children: [
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (ctx) => const ProfileScreen(
-                        initialTab: 'profile',
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _settingsTitle("Profile"),
+          Container(
+            child: Column(
+              children: [
+                ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) => const ProfileScreen(
+                          initialTab: 'profile',
+                        ),
                       ),
+                    );
+                  },
+                  title: const Text(
+                    "profile",
+                    style: TextStyle(
+                      color: Colors.teal,
+                      fontSize: 14.0,
                     ),
-                  );
-                },
-                title: const Text(
-                  "profile",
-                  style: TextStyle(
-                    color: Colors.teal,
-                    fontSize: 14.0,
                   ),
                 ),
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (ctx) => const ChangePasswordScreen()),
-                  );
-                },
-                title: const Text(
-                  "Change Password",
-                  style: TextStyle(
-                    color: Colors.teal,
-                    fontSize: 14.0,
+                ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (ctx) => const ChangePasswordScreen()),
+                    );
+                  },
+                  title: const Text(
+                    "Change Password",
+                    style: TextStyle(
+                      color: Colors.teal,
+                      fontSize: 14.0,
+                    ),
                   ),
                 ),
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => const ChangeEmailScreen(),
-                  ));
-                },
-                title: const Text(
-                  "Change Email",
-                  style: TextStyle(
-                    color: Colors.teal,
-                    fontSize: 14.0,
+                ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => const ChangeEmailScreen(),
+                    ));
+                  },
+                  title: const Text(
+                    "Change Email",
+                    style: TextStyle(
+                      color: Colors.teal,
+                      fontSize: 14.0,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        _settingsTitle("Email Notifications"),
-        Container(
-          child: const Column(
-            children: [
-              CustomSettingListTile(
-                title: 'Question',
-                subTitle: "Send mail when you post any question.",
-              ),
-              CustomSettingListTile(
-                title: 'Comment',
-                subTitle: "Send mail when someone responses on your question.",
-              ),
-              CustomSettingListTile(
-                title: 'Reply',
-                subTitle: "Send mail when someone responses on your comment.",
-              ),
-              CustomSettingListTile(
-                title: 'Assignment',
-                subTitle: "Send mail when someone responses on your question.",
-              ),
-            ],
+          _settingsTitle("Email Notifications"),
+          Container(
+            child: const Column(
+              children: [
+                CustomSettingListTile(
+                  title: 'Question',
+                  subTitle: "Send mail when you post any question.",
+                ),
+                CustomSettingListTile(
+                  title: 'Comment',
+                  subTitle: "Send mail when someone responses on your question.",
+                ),
+                CustomSettingListTile(
+                  title: 'Reply',
+                  subTitle: "Send mail when someone responses on your comment.",
+                ),
+                CustomSettingListTile(
+                  title: 'Assignment',
+                  subTitle: "Send mail when someone responses on your question.",
+                ),
+              ],
+            ),
           ),
-        ),
-        _settingsTitle("Privacy"),
-        Container(
-          child: const Column(
-            children: [
-              CustomSettingListTile(
-                title: "Basic Info",
-                subTitle:
-                    "Show your basic info like DOB and address for visitors.",
-              ),
-              CustomSettingListTile(
-                title: "Contact Info",
-                subTitle: "Show your phone number for visitors.",
-              ),
-              CustomSettingListTile(
-                title: "Email Info",
-                subTitle: "Show your email address to visitors.",
-              )
-            ],
-          ),
-        )
-      ],
+          _settingsTitle("Privacy"),
+          Container(
+            child: const Column(
+              children: [
+                CustomSettingListTile(
+                  title: "Basic Info",
+                  subTitle:
+                      "Show your basic info like DOB and address for visitors.",
+                ),
+                CustomSettingListTile(
+                  title: "Contact Info",
+                  subTitle: "Show your phone number for visitors.",
+                ),
+                CustomSettingListTile(
+                  title: "Email Info",
+                  subTitle: "Show your email address to visitors.",
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 

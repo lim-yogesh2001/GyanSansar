@@ -26,7 +26,7 @@ class CommentComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.grey,
               radius: 18.0,
               backgroundImage:NetworkImage(imageUrl ?? "https://images.unsplash.com/photo-1582053628662-c65b0e0544e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
             ),
@@ -69,7 +69,7 @@ class CommentComponent extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 10.0),
-                width: 200,
+                // width: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -110,7 +110,7 @@ class _CommentBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       // hoverColor: Colors.amber,
       onTap: onPressed,
       child: Text(

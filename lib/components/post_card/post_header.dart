@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/models/faculty.dart';
+import 'package:gyansansar/models/subject.dart';
+import 'package:gyansansar/models/user.dart';
 
 class PostHeader extends StatelessWidget {
+  final User user;
+  final Subject subject;
+  final Faculty faculty;
   const PostHeader({
+    required this.user,
+    required this.subject,
+    required this.faculty,
     super.key,
   });
 
@@ -10,12 +19,13 @@ class PostHeader extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 50.0,
           child: CircleAvatar(
             radius: 20.0,
             backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80'),
+              user.info?.profile ?? "https://images.unsplash.com/photo-1582053628662-c65b0e0544e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+            ),
           ),
         ),
         Expanded(
@@ -26,7 +36,7 @@ class PostHeader extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                      text: 'Chandler Hayes',
+                      text: "${user.givenName} ${user.familyName}",
                       style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
@@ -40,7 +50,7 @@ class PostHeader extends StatelessWidget {
                               color: Colors.black87),
                         ),
                         TextSpan(
-                          text: 'Place.',
+                          text: subject.subjectName,
                           style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
@@ -54,7 +64,7 @@ class PostHeader extends StatelessWidget {
                               color: Colors.black87),
                         ),
                         TextSpan(
-                          text: 'BEd.IT (Tribhuvan University)',
+                          text: faculty.facultyName,
                           style: TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
