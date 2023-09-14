@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gyansansar/models/random_post.dart';
+import 'package:gyansansar/models/post.dart';
 import '../components/post_card/post_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../provider/random_post.dart';
+import '../provider/post.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -13,7 +13,7 @@ class HomeScreen extends ConsumerWidget {
 
     return data.when(
       data: (data) {
-        List<RandomPost> randomPostList = data.map((e) => e).toList();
+        List<Post> randomPostList = data.map((e) => e).toList();
         return Column(
           children: [
             Expanded(

@@ -6,11 +6,11 @@ import 'package:gyansansar/models/meta.dart';
 import 'package:gyansansar/models/subject.dart';
 import 'package:gyansansar/models/user.dart';
 
-List<RandomPost> randomPostFromJson(String str) => List<RandomPost>.from(
-      json.decode(str).map((x) => RandomPost.fromJson(x)),
+List<Post> randomPostFromJson(String str) => List<Post>.from(
+      json.decode(str).map((x) => Post.fromJson(x)),
     );
 
-class RandomPost {
+class Post {
   final int id;
   final String facultyId;
   final String subjectId;
@@ -30,7 +30,7 @@ class RandomPost {
   final User user;
   final List<Comment> comment;
 
-  RandomPost({
+  Post({
     required this.id,
     required this.facultyId,
     required this.subjectId,
@@ -51,8 +51,8 @@ class RandomPost {
     required this.comment,
   });
 
-  factory RandomPost.fromJson(Map<String, dynamic> json) {
-    return RandomPost(
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
       id: json['id'] as int,
       facultyId: json['faculty_id'] as String,
       subjectId: json['subject_id'] as String,
