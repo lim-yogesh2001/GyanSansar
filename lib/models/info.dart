@@ -25,8 +25,9 @@ class Info {
 
   factory Info.fromJson(Map<String, dynamic> json) => Info(
         userId: json["user_id"] != null ? json['user_id'] as String : null,
-        profile: json['profile'] !=null ? json['profile'] as String : null,
-        coverPhoto: json['cover_photo'] !=null ? json['cover_photo'] as String : null,
+        profile: json['profile'] != null ? json['profile'] as String : null,
+        coverPhoto:
+            json['cover_photo'] != null ? json['cover_photo'] as String : null,
         dob: DateTime.parse(json['dob']),
         gender: json['gender'] as String,
         countryId: json['country_id'] as String,
@@ -36,4 +37,19 @@ class Info {
         roomBuildingStreetAddress:
             json['room_building_street_address'] as String,
       );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'user_id': userId,
+      'profile': profile,
+      'cover_photo': coverPhoto,
+      'dob': dob?.toIso8601String(),
+      'gender': gender,
+      'country_id': countryId,
+      'postal_code': postalCode,
+      'province_state_prefecture': provinceStatePrefecture,
+      'town_ward_city': townWardCity,
+      'room_building_street_address': roomBuildingStreetAddress,
+    };
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gyansansar/models/post.dart';
-import '../provider/post.dart';
+import '../provider/post_provider.dart';
 import '../components/post_card/post_card.dart';
 
 class FollowingScreen extends ConsumerWidget {
@@ -21,13 +21,8 @@ class FollowingScreen extends ConsumerWidget {
                     itemCount: followerPosts.length,
                     itemBuilder: (context, i) {
                       return PostCard(
-                          postImages: followerPosts[i].meta,
-                          postComments: followerPosts[i].comment,
-                          user: followerPosts[i].user,
-                          subject: followerPosts[i].subject,
-                          faculty: followerPosts[i].faculty,
-                          description: followerPosts[i].description,
-                          likeStatus: followerPosts[i].likedStatus);
+                        post: followerPosts[i],
+                        );
                     }))
           ],
         );

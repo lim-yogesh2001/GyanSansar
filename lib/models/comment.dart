@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:gyansansar/models/attachment.dart';
 import 'package:gyansansar/models/user.dart';
 
@@ -31,7 +29,6 @@ class Comment {
   });
 
   factory Comment.fromJson(Map<String, dynamic> json) {
-
     return Comment(
       id: json['id'] as int,
       userId: json['user_id'] as String,
@@ -43,7 +40,26 @@ class Comment {
       reactorCounter: json['reactorCounter'] as String,
       replyCounter: json['replyCounter'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
-      attachment: ((json['attachment'] as List<dynamic>?)?.map((e) => Attachment.fromJson(e)).toList()) ?? [],
+      attachment: ((json['attachment'] as List<dynamic>?)
+              ?.map((e) => Attachment.fromJson(e))
+              .toList()) ??
+          [],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'user_id': userId,
+      'description': description,
+      'post_id': postId,
+      'created_at': createdAt,
+      'updared_at': updatedAt,
+      'likedStatus': likedStatus,
+      'reactorCounter': reactorCounter,
+      'replyCounter': replyCounter,
+      'user': user.toJson(),
+      'attachment': attachment.map((e) => e.toJson()).toList(),
+    };
   }
 }

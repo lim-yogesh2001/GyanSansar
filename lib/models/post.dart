@@ -51,6 +51,48 @@ class Post {
     required this.comment,
   });
 
+  Post copyWith({
+      int? id,
+   String? facultyId,
+   String? subjectId,
+   String? userId,
+   String? type,
+   String? description,
+   String? notificationStatus,
+   DateTime? createdAt,
+   DateTime? updatedAt,
+   String? likedStatus,
+   String? favouriteStatus,
+   String? reactorCounter,
+   String? commentCounter,
+   List<Meta>? meta,
+   Subject? subject,
+   Faculty? faculty,
+   User? user,
+   List<Comment>? comment}
+  ){
+    return Post(
+      id: id ?? this.id,
+      facultyId: facultyId ?? this.facultyId,
+      subjectId: subjectId ?? this.subjectId,
+      userId: userId ?? this.userId,
+      type: type ?? this.type,
+      description: description ?? this.description,
+      notificationStatus: notificationStatus ?? this.notificationStatus,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      likedStatus: likedStatus ?? this.likedStatus,
+      favouriteStatus: favouriteStatus ?? this.favouriteStatus,
+      reactorCounter: reactorCounter ?? this.reactorCounter,
+      commentCounter: commentCounter ?? this.commentCounter,
+      meta: meta ?? this.meta,
+      subject: subject ?? this.subject,
+      faculty: faculty ?? this.faculty,
+      user: user ?? this.user,
+      comment: comment ?? this.comment,
+    );
+  }
+
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       id: json['id'] as int,
@@ -77,4 +119,6 @@ class Post {
           .toList() ?? [],
     );
   }
+
+  
 }

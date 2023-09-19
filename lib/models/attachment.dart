@@ -13,4 +13,12 @@ class Attachment {
       id: json['id'],
       commentId: json['comment_id'],
       attachment: json['attachment']);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'comment_id': commentId,
+      'attachment': attachment,
+    };
+  }
 }

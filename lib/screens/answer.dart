@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/post_card/post_card.dart';
 import '../models/post.dart';
-import '../provider/post.dart';
+import '../provider/post_provider.dart';
 
 class AnswerScreen extends ConsumerWidget {
   const AnswerScreen({super.key});
@@ -22,13 +22,8 @@ class AnswerScreen extends ConsumerWidget {
                     itemCount: answerPosts.length,
                     itemBuilder: (context, i) {
                       return PostCard(
-                          postImages: answerPosts[i].meta,
-                          postComments: answerPosts[i].comment,
-                          user: answerPosts[i].user,
-                          subject: answerPosts[i].subject,
-                          faculty: answerPosts[i].faculty,
-                          description: answerPosts[i].description,
-                          likeStatus: answerPosts[i].likedStatus);
+                         post: answerPosts[i],
+                         );
                     }))
           ],
         );

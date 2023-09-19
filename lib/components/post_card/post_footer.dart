@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gyansansar/provider/post_provider.dart';
 import '../custom_flat_button.dart';
 import './comment_overlay.dart';
-import '../../models/comment.dart';
 
-class PostFooter extends StatefulWidget {
-  final List<Comment> comments;
-  final String likeStatus;
+class PostFooter extends ConsumerStatefulWidget {
+  final int postId;
   const PostFooter({
-    required this.comments,
-    required this.likeStatus,
+    required this.postId,
     super.key,
   });
 
   @override
-  State<PostFooter> createState() => _PostFooterState();
+  ConsumerState<PostFooter> createState() => _PostFooterState();
 }
 
-class _PostFooterState extends State<PostFooter> {
+class _PostFooterState extends ConsumerState<PostFooter> {
   OverlayEntry? overlayEntry;
   bool isLiked = false;
   bool isFavorite = false;
@@ -34,8 +32,7 @@ class _PostFooterState extends State<PostFooter> {
         widthFactor: 0.0,
         heightFactor: 10.0,
         child: CommentOverlay(
-          comments: widget.comments,
-          likeStatus: widget.likeStatus,
+          postId: widget.postId,
           closeOverlay: closeOverlay,
         ),
       );
@@ -45,6 +42,7 @@ class _PostFooterState extends State<PostFooter> {
 
   @override
   Widget build(BuildContext context) {
+    final post = ref.watch(randomPostProvider.notifier).randomPostById(widget.postId);
     return Column(
       children: [
         Row(
@@ -61,7 +59,7 @@ class _PostFooterState extends State<PostFooter> {
                     width: 10.0,
                   ),
                   Text(
-                    widget.likeStatus,
+                    post.likedStatus,
                     style: const TextStyle(
                       fontSize: 12.0,
                     ),
@@ -71,7 +69,7 @@ class _PostFooterState extends State<PostFooter> {
                 margin: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(children: [
                   Text(
-                    widget.comments.length.toString(),
+                    post.comment.length.toString(),
                     style: const TextStyle(
                       fontSize: 12.0,
                     ),

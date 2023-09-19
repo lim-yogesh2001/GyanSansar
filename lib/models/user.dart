@@ -30,4 +30,16 @@ class User {
             ? Info.fromJson(json['info'] as Map<String, dynamic>)
             : null,
       );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'given_name': givenName,
+      'family_name': familyName,
+      'email': email,
+      'phone': phone,
+      'type': type,
+      'info': info?.toJson()
+    };
+  }
 }

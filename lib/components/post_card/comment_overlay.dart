@@ -1,39 +1,66 @@
 import 'package:flutter/material.dart';
-import '../../models/comment.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../comment.dart';
 import './status_counter.dart';
+import '../../provider/post_provider.dart';
 
-class CommentOverlay extends StatefulWidget {
-  final List<Comment> comments;
-  final String likeStatus;
+class CommentOverlay extends ConsumerStatefulWidget {
+  final int postId;
   final void Function(bool) closeOverlay;
   const CommentOverlay({
-    required this.comments,
-    required this.likeStatus,
+    required this.postId,
     required this.closeOverlay,
     super.key,
   });
 
   @override
-  State<CommentOverlay> createState() => _CommentOverlayState();
+  ConsumerState<CommentOverlay> createState() => _CommentOverlayState();
 }
 
-class _CommentOverlayState extends State<CommentOverlay> {
+class _CommentOverlayState extends ConsumerState<CommentOverlay> {
   double offsetY = 0.0; // initial Y postition
   double initialY = 0.0; // initial Y position when drag starts.
   bool isDragging = false;
   final TextEditingController _textController = TextEditingController();
   String text = "";
+  bool isLoading = false;
+
+  void submitComment() async {
+    if (_textController.text.isEmpty) {
+      return;
+    } else {
+      setState(() {
+        isLoading = true;
+      });
+      try {
+        final result = await ref.read(randomPostProvider.notifier).addComment(
+          widget.postId,
+          _textController.text,
+          [],
+        );
+        if (result) {
+          setState(() {
+            isLoading = false;
+          });
+          _textController.text = "";
+        }
+      } catch (e) {
+        // ignore: use_build_context_synchronously
+        throw Exception(e);
+      }
+    }
+  }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _textController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final post =
+        ref.watch(randomPostProvider.notifier).randomPostById(widget.postId);
     return Scaffold(
       backgroundColor: Colors.black38,
       body: SafeArea(
@@ -82,23 +109,24 @@ class _CommentOverlayState extends State<CommentOverlay> {
                 // crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   StatusCounter(
-                      likeStatus: widget.likeStatus,
-                      numberofComments: widget.comments.length),
+                      likeStatus: post.likedStatus,
+                      numberofComments: post.comment.length),
                   Divider(
                     height: 20.0,
                     color: Colors.grey.shade400,
                   ),
                   Expanded(
-                      child: ListView.builder(
-                          itemCount: widget.comments.length,
-                          itemBuilder: (context, i) {
-                            return CommentComponent(
-                              imageUrl: widget.comments[i].user.info?.profile,
-                              username: widget.comments[i].user.givenName,
-                              description: widget.comments[i].description,
-                              created: widget.comments[i].createdAt,
-                            );
-                          })),
+                      child: isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ListView.builder(
+                              itemCount: post.comment.length,
+                              itemBuilder: (context, i) {
+                                return CommentComponent(
+                                  comment: post.comment[i],
+                                );
+                              })),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 5.0, horizontal: 10.0),
@@ -109,9 +137,7 @@ class _CommentOverlayState extends State<CommentOverlay> {
                           height: 60,
                           child: TextField(
                             controller: _textController,
-                            onChanged: (value) => setState(() {
-                              text = value;
-                            }),
+                            onChanged: (value) => setState(() => text = value),
                             textInputAction: TextInputAction.send,
                             decoration: InputDecoration(
                                 fillColor: Colors.grey.withOpacity(0.2),
@@ -129,7 +155,7 @@ class _CommentOverlayState extends State<CommentOverlay> {
                         ),
                         Expanded(
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: submitComment,
                             icon: text == ""
                                 ? const Icon(Icons.send)
                                 : const Icon(

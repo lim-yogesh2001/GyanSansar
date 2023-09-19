@@ -14,10 +14,7 @@ class PostComment extends StatelessWidget {
     return comments.isEmpty
         ? const SizedBox.shrink()
         : CommentComponent(
-            imageUrl: comments[0].user.info?.profile,
-            username: comments[0].user.givenName,
-            description: comments[0].description,
-            created: comments[0].createdAt,
+            comment: comments[0],
           );
   }
 }
