@@ -17,7 +17,7 @@ class RandomPostNotifier extends StateNotifier<List<Post>> {
     state = [...newList];
   }
 
-  Post randomPostById(int id){
+  Post randomPostById(String id){
     return state.firstWhere((element) => element.id == id);
   }
 

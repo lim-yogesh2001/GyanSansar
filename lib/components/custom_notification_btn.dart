@@ -21,12 +21,12 @@ class _CustomNotificationButtonState extends State<CustomNotificationButton> {
       children: [
         IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NotificationScreen(),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => Text('Notification'),
+            //   ),
+            // );
           },
           iconSize: 30.0,
           icon: const Icon(Icons.notifications),

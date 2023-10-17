@@ -1,5 +1,5 @@
 class Attachment {
-  int id;
+  String id;
   String commentId;
   String attachment;
 

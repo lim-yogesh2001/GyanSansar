@@ -2,7 +2,7 @@ import 'package:gyansansar/models/attachment.dart';
 import 'package:gyansansar/models/user.dart';
 
 class Comment {
-  int id;
+  String id;
   String userId;
   String description;
   String postId;
@@ -30,7 +30,7 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      id: json['id'] as int,
+      id: json['id'] as String,
       userId: json['user_id'] as String,
       description: json['description'] as String,
       postId: json['post_id'] as String,

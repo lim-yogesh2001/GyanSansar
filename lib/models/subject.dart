@@ -1,5 +1,5 @@
 class Subject {
-  int id;
+  String id;
   String subjectName;
   String fullMark;
   String passMark;
@@ -22,7 +22,7 @@ class Subject {
   });
 
   factory Subject.fromJson(Map<String, dynamic> json) => Subject(
-        id: json['id'] as int,
+        id: json['id'] as String,
         subjectName: json['subject_name'] as String,
         fullMark: json['full_mark'] as String,
         passMark: json['pass_mark'] as String,

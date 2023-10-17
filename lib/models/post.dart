@@ -11,7 +11,7 @@ List<Post> randomPostFromJson(String str) => List<Post>.from(
     );
 
 class Post {
-  final int id;
+  final String id;
   final String facultyId;
   final String subjectId;
   final String userId;
@@ -52,7 +52,7 @@ class Post {
   });
 
   Post copyWith({
-      int? id,
+      String? id,
    String? facultyId,
    String? subjectId,
    String? userId,
@@ -95,7 +95,7 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      id: json['id'] as int,
+      id: json['id'] as String,
       facultyId: json['faculty_id'] as String,
       subjectId: json['subject_id'] as String,
       userId: json['user_id'] as String,

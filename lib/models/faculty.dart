@@ -1,7 +1,7 @@
 import 'package:gyansansar/models/country.dart';
 
 class Faculty {
-  int id;
+  String id;
   String facultyName;
   String countryId;
   Country country;
@@ -14,7 +14,7 @@ class Faculty {
   });
 
   factory Faculty.fromJson(Map<String, dynamic> json) => Faculty(
-        id: json['id'] as int,
+        id: json['id'] as String,
         facultyName: json['faculty_name'] as String,
         countryId: json['country_id'] as String,
         country: Country.fromJson(json['country'] as Map<String, dynamic>),

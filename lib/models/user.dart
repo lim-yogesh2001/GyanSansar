@@ -1,7 +1,7 @@
 import 'info.dart';
 
 class User {
-  final int id;
+  final String id;
   final String givenName;
   final String familyName;
   final String email;
@@ -20,7 +20,7 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json['id'] as int,
+        id: json['id'] as String,
         givenName: json['given_name'] as String,
         familyName: json['family_name'] as String,
         email: json['email'] as String,

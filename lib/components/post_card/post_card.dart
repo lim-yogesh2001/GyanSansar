@@ -33,7 +33,7 @@ class PostCard extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 300,
-              child: Image.network(
+              child:  Image.network(
                 post.meta[0].attachment,
                 fit: BoxFit.cover,
               ),
@@ -68,7 +68,7 @@ class PostCard extends StatelessWidget {
             height: 20.0,
           ),
           PostFooter(
-            postId: post.id,
+            post: post,
           ),
           PostComment(comments: post.comment)
         ],

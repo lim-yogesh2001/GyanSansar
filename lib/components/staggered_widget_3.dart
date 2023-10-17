@@ -6,7 +6,7 @@ import 'package:transparent_image/transparent_image.dart';
 import '../screens/post_image.dart';
 
 class StaggeredGridWidget3 extends StatelessWidget {
-  final List<Meta> gridItems;
+  final List<Meta>? gridItems;
   const StaggeredGridWidget3({
     required this.gridItems,
     super.key,
@@ -14,7 +14,7 @@ class StaggeredGridWidget3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int? girdItemsCount = gridItems.length - 3;
+    int? girdItemsCount = gridItems!.length - 3;
 
     Widget countDisplayer = Container(
       width: 1000,
@@ -39,14 +39,14 @@ class StaggeredGridWidget3 extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => PostImageScreen(
-                    images: gridItems,
-                    clickedImageIndex: gridItems.indexOf(gridItems[0])),
+                    images: gridItems!,
+                    clickedImageIndex: gridItems!.indexOf(gridItems![0])),
               ),
             ),
             child: Container(
                 child: FadeInImage(
               placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(gridItems[0].attachment),
+              image: NetworkImage(gridItems![0].attachment),
               fit: BoxFit.cover,
             )),
           ),
@@ -58,14 +58,14 @@ class StaggeredGridWidget3 extends StatelessWidget {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => PostImageScreen(
-                    images: gridItems,
-                    clickedImageIndex: gridItems.indexOf(gridItems[1])),
+                    images: gridItems!,
+                    clickedImageIndex: gridItems!.indexOf(gridItems![1])),
               ),
             ),
             child: Container(
                 child: FadeInImage(
               placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(gridItems[1].attachment),
+              image: NetworkImage(gridItems![1].attachment),
               fit: BoxFit.cover,
             )),
           ),
@@ -79,7 +79,7 @@ class StaggeredGridWidget3 extends StatelessWidget {
               height: 1000,
               child: FadeInImage(
                 placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(gridItems[2].attachment),
+                image: NetworkImage(gridItems![2].attachment),
                 fit: BoxFit.cover,
               ),
             ),

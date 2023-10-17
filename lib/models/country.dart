@@ -1,5 +1,5 @@
 class Country {
-  int id;
+  String id;
   String countryName;
   String countryCode;
   String phoneCode;
@@ -12,7 +12,7 @@ class Country {
   });
 
   factory Country.fromJson(Map<String, dynamic> json) => Country(
-        id: json['id'] as int,
+        id: json['id'] as String,
         countryName: json['country_name'] as String,
         countryCode: json['country_code'] as String,
         phoneCode: json['phone_code'] as String,

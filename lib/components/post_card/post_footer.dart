@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gyansansar/models/post.dart';
 import 'package:gyansansar/provider/post_provider.dart';
 import '../custom_flat_button.dart';
 import './comment_overlay.dart';
 
 class PostFooter extends ConsumerStatefulWidget {
-  final int postId;
+  final Post post;
   const PostFooter({
-    required this.postId,
+    required this.post,
     super.key,
   });
 
@@ -23,7 +24,7 @@ class _PostFooterState extends ConsumerState<PostFooter> {
 
   void closeOverlay(bool value) {
     overlayEntry!.remove();
-    overlayEntry = null;
+    overlayEntry = null; 
   }
 
   void showOverlay() {
@@ -32,7 +33,7 @@ class _PostFooterState extends ConsumerState<PostFooter> {
         widthFactor: 0.0,
         heightFactor: 10.0,
         child: CommentOverlay(
-          postId: widget.postId,
+          postId: widget.post.id,
           closeOverlay: closeOverlay,
         ),
       );
@@ -42,7 +43,6 @@ class _PostFooterState extends ConsumerState<PostFooter> {
 
   @override
   Widget build(BuildContext context) {
-    final post = ref.watch(randomPostProvider.notifier).randomPostById(widget.postId);
     return Column(
       children: [
         Row(
@@ -59,7 +59,7 @@ class _PostFooterState extends ConsumerState<PostFooter> {
                     width: 10.0,
                   ),
                   Text(
-                    post.likedStatus,
+                    widget.post.likedStatus,
                     style: const TextStyle(
                       fontSize: 12.0,
                     ),
@@ -69,7 +69,7 @@ class _PostFooterState extends ConsumerState<PostFooter> {
                 margin: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(children: [
                   Text(
-                    post.comment.length.toString(),
+                    widget.post.comment.length.toString(),
                     style: const TextStyle(
                       fontSize: 12.0,
                     ),

@@ -11,7 +11,7 @@ class PostApi {
   Future<List<Post>> fetchRandomPost() async {
     final response = await http.get(
         Uri.parse("$url/post/random")
-            .replace(queryParameters: {"offset": "0", "limit": "5"}),
+            .replace(queryParameters: {"offset": "0", "limit": "20"}),
         headers: {"Content-Type": "application/json"});
     try {
       if (response.statusCode == 200) {
@@ -34,7 +34,7 @@ class PostApi {
         headers: {
           "Content-Type": "application/json",
           "Authorization":
-              "Bearer 06f0c78851c0c8d22a021ee74eb48951a4dbc8ca7721192b9330bdba577c086e"
+              "Bearer f0a7aee98dca51035a30781faf14728108356f9bb6f942564f3dad0b3bca5612"
         });
     try {
       if (response.statusCode == 200) {
@@ -57,7 +57,7 @@ class PostApi {
         headers: {
           "Content-Type": "application/json",
           "Authorization":
-              "Bearer 06f0c78851c0c8d22a021ee74eb48951a4dbc8ca7721192b9330bdba577c086e"
+              "Bearer f0a7aee98dca51035a30781faf14728108356f9bb6f942564f3dad0b3bca5612"
         });
     try {
       if (response.statusCode == 200) {

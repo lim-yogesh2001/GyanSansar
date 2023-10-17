@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gyansansar/screens/asked_queries.dart';
 import 'package:gyansansar/screens/course_list.dart';
 import 'package:gyansansar/screens/notes_list.dart';
 import 'package:gyansansar/screens/profile.dart';
@@ -22,33 +23,53 @@ class CustomDrawer extends StatelessWidget {
                     bottomLeft: Radius.circular(25.0),
                     bottomRight: Radius.circular(25.0))),
             padding: const EdgeInsets.all(12.0),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   child: CircleAvatar(
                     radius: 60.0,
                     backgroundImage: AssetImage('assets/gyansansar_logo.png'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5.0,
                 ),
-                Text(
-                  '  Yogesh Limbu',
+                const Text(
+                  '  Sujit Shrestha',
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  '  yogeshlim2001@gmail.com',
+                const Text(
+                  '  sjit.stha@gmail.com',
                   style: TextStyle(
                     color: Colors.orange,
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Color(0xff077c77))),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => const AskedQueriesScreen(),
+                        ));
+                      },
+                      child: const Text(
+                        "Add Question",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ))
               ],
             ),
           ),
@@ -104,7 +125,7 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (ctx) =>
-                        const ProfileScreen(initialTab: 'favorites'))); 
+                        const ProfileScreen(initialTab: 'favorites')));
               }),
           _CustomDrawerTile(
               title: "Logout", icon: Icons.logout, function: () {})

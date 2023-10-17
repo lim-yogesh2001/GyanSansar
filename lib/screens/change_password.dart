@@ -54,6 +54,7 @@ class __ChangePasswordFormState extends State<_ChangePasswordForm> {
     return SizedBox(
       width: double.infinity,
       child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
             Container(

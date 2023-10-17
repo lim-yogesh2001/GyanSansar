@@ -5,7 +5,7 @@ import './status_counter.dart';
 import '../../provider/post_provider.dart';
 
 class CommentOverlay extends ConsumerStatefulWidget {
-  final int postId;
+  final String postId;
   final void Function(bool) closeOverlay;
   const CommentOverlay({
     required this.postId,
